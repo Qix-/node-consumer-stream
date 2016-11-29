@@ -58,3 +58,23 @@ it 'should be able to handle large lines of text', (cb) ->
 		cb()
 	s.write('open source is fun') for i in [0...10000]
 	s.end()
+
+it 'should properly handle unicode characters', (cb) ->
+	s = consumerStream()
+	s.on 'line', (str, line) ->
+		line.should.equal 1
+		str.toString('utf8').should.equal '🦄🙌'
+		cb()
+	s.write '🦄🙌'
+	s.end()
+
+it 'should properly handle split glyphs', (cb) ->
+	s = consumerStream()
+	s.on 'line', (str, line) ->
+		line.should.equal 1
+		str.should.deepEqual Buffer '🦄'
+		str.toString('utf8').should.equal '🦄'
+		cb()
+	s.write Buffer('🦄').slice 0, 2
+	s.write Buffer('🦄').slice 2
+	s.end()

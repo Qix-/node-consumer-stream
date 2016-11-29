@@ -77,6 +77,7 @@ function consumerStream() {
 				continue;
 			} else if (utf8type > 1) {
 				++col;
+				pool.writeBuffer(buf.slice(i + 1, i + utf8type));
 				i += utf8type - 1;
 				continue;
 			}
