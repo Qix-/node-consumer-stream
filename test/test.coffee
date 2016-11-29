@@ -3,6 +3,8 @@ should = require 'should'
 
 Error.stackTraceLimit = Infinity
 
+String::repeat = (n) -> Array(n+1).join @
+
 it 'should not emit an empty string', ->
 	s = consumerStream()
 	s.on 'line', -> should.fail null, null, 'line was called back on an empty string'
