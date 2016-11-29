@@ -1,7 +1,7 @@
 {
   "name": "consumer-stream",
   "description": "Stream metrics tracking",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Qix (http://github.com/qix-)",
   "keywords": [
     "stream",
