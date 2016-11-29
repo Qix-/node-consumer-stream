@@ -1,5 +1,6 @@
 consumerStream = require '../'
 should = require 'should'
+stream = require 'stream'
 
 Error.stackTraceLimit = Infinity
 
@@ -78,3 +79,26 @@ it 'should properly handle split glyphs', (cb) ->
 	s.write Buffer('🦄').slice 0, 2
 	s.write Buffer('🦄').slice 2
 	s.end()
+
+it 'should properly take a pipe without a new line', (cb) ->
+	s = consumerStream()
+	s.on 'line', (str, line) ->
+		line.should.equal 1
+		str.toString('utf8').should.equal 'Hello!'
+		cb()
+	pt = new stream.PassThrough()
+	pt.pipe s
+	pt.write 'Hello!'
+	pt.end()
+
+it 'should properly take a pipe with a new line', (cb) ->
+	s = consumerStream()
+	s.on 'line', (str, line) ->
+		line.should.equal 1
+		str.toString('utf8').should.equal 'Hello!'
+		cb()
+	pt = new stream.PassThrough()
+	pt.pipe s
+	pt.write 'Hello!'
+	pt.write '\n'
+	pt.end()
