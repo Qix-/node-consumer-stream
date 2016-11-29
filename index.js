@@ -20,7 +20,7 @@ BufferPool.prototype = {
 		var totalLength = this.cursor - rtrim;
 		var bufCount = Math.ceil(totalLength / this.bufferSize);
 		var minimizedPool = this.pool.slice(0, bufCount);
-		var result = Buffer.concat(minimizedPool, totalLength);
+		var result = Buffer.concat(minimizedPool, totalLength).slice(0, totalLength);
 		this.clear();
 		return result;
 	},
