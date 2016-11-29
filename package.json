@@ -1,0 +1,37 @@
+{
+  "name": "consumer-stream",
+  "description": "Stream metrics tracking",
+  "version": "0.1.0",
+  "author": "Qix (http://github.com/qix-)",
+  "keywords": [
+    "stream",
+    "metrics",
+    "line",
+    "each",
+    "readline",
+    "track",
+    "count",
+    "column",
+    "parse"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "pretest": "xo",
+    "test": "mocha --compilers coffee:coffee-script/register"
+  },
+  "files": [
+    "index.js"
+  ],
+  "repository": "qix-/node-consumer-stream",
+  "devDependencies": {
+    "coffee-script": "^1.9.3",
+    "coveralls": "^2.11.2",
+    "istanbul": "^0.3.17",
+    "mocha": "^2.2.5",
+    "should": "^7.0.1",
+    "xo": "^0.7.1"
+  },
+  "dependencies": {
+    "high-order": "^0.1.1"
+  }
+}
